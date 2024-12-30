@@ -6,15 +6,15 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:43:07 by aelaaser          #+#    #+#             */
-/*   Updated: 2024/12/22 18:47:00 by aelaaser         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:58:15 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#include "philo.h"
 
 int	write_error(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len])
