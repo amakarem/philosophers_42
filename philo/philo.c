@@ -6,19 +6,68 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:39:40 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/03 16:08:24 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:00:55 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-uint64_t	get_time(void)
+static int	create_threads(t_data *data)
 {
-	struct timeval	time;
+	int	i;
+	int	nb_of_philos;
 
-	if (gettimeofday(&time, NULL))
-		return (0);
-	return ((uint64_t)(time.tv_sec) * 1000 + (time.tv_usec / 1000));
+	nb_of_philos = get_nb_philos(data);
+	i = -1;
+	data->start_time = get_time();
+	while (++i < nb_of_philos)
+	{
+		if (pthread_create(&data->philo_ths[i], NULL,
+				&routine, &data->philos[i]))
+			return (1);
+	}
+	if (pthread_create(&data->monit_all_alive, NULL,
+			&all_alive_routine, data))
+		return (1);
+	if (nb_meals_option(data) == true
+		&& pthread_create(&data->monit_all_full, NULL,
+			&all_full_routine, data))
+		return (1);
+	return (0);
+}
+
+static int	join_threads(t_data *data)
+{
+	int	i;
+	int	nb_philos;
+
+	nb_philos = get_nb_philos(data);
+	i = -1;
+	if (pthread_join(data->monit_all_alive, NULL))
+		return (1);
+	if (nb_meals_option(data) == true
+		&& pthread_join(data->monit_all_full, NULL))
+		return (1);
+	while (++i < nb_philos)
+	{
+		if (pthread_join(data->philo_ths[i], NULL))
+			return (1);
+	}
+	return (0);
+}
+
+int	philosophers(int argc, char **argv)
+{
+	t_data	data;
+
+	if (init_data(&data, argc, argv) != 0)
+		return (MALLOC_ERROR);
+	init_philos(&data);
+	init_forks(&data);
+	create_threads(&data);
+	join_threads(&data);
+	free_data(&data);
+	return (0);
 }
 
 void	leaks(void)
@@ -28,19 +77,13 @@ void	leaks(void)
 
 int	main(int argc, char **argv)
 {
-	uint64_t	start_time;
-	uint64_t	now;
-
 	atexit(&leaks);
-	if (argc != 5 && argc != 6)
-		return (write_error("usage: ./philo <number_of_philosophers> \
-<time_to_die> <time_to_eat> <time_to_sleep> \
-[number_of_times_each_philosopher_must_eat]"));
-	printf("\n starting... %s", argv[0]);
-	start_time = get_time();
-	usleep(10000);
-	now = get_time();
-	printf("\n Time: %llu", now - start_time);
-	fflush(stdout);
+	if (check_input(argc, argv) != 0)
+	{
+		print_instruction();
+		return (WRONG_INPUT);
+	}
+	if (philosophers(argc, argv) != 0)
+		return (MALLOC_ERROR);
 	return (0);
 }
