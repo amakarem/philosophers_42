@@ -6,16 +6,11 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:44:21 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 18:10:19 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:28:20 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// static void	drop_left_fork(t_philo *philo)
-// {
-// 	pthread_mutex_unlock(philo->left_f);
-// }
 
 static void	drop_forks(t_philo *philo)
 {

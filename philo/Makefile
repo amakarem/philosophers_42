@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/22 18:38:23 by aelaaser          #+#    #+#              #
-#    Updated: 2025/01/23 18:19:31 by aelaaser         ###   ########.fr        #
+#    Updated: 2025/01/23 19:29:35 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	action.c eat.c eat_ext.c error_helper.c parse.c philo.c philo_init.c philo_utils.c routine.c status.c time.c utils.c watch.c
+SRCS = 	action.c eat.c eat_ext.c parse.c philo.c philo_init.c philo_utils.c status.c time.c utils.c watch.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,11 +6,35 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:39:40 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 18:00:55 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:30:54 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	*routine(void *philo_p)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *) philo_p;
+	update_last_meal_time(philo);
+	if (philo->id % 2 == 0)
+		ft_usleep(philo->data->eat_time - 10);
+	while (get_philo_state(philo) != DEAD)
+	{
+		if (eat(philo) != 0)
+			break ;
+		if (get_philo_state(philo) == DEAD)
+			break ;
+		if (ft_sleep(philo) != 0)
+			break ;
+		if (get_philo_state(philo) == DEAD)
+			break ;
+		if (think(philo) != 0)
+			break ;
+	}
+	return (NULL);
+}
 
 static int	create_threads(t_data *data)
 {
@@ -70,14 +94,13 @@ int	philosophers(int argc, char **argv)
 	return (0);
 }
 
-void	leaks(void)
-{
-	system("leaks philo");
-}
-
+// void	leaks(void)
+// {
+// 	system("leaks philo");
+// }
+// atexit(&leaks);
 int	main(int argc, char **argv)
 {
-	atexit(&leaks);
 	if (check_input(argc, argv) != 0)
 	{
 		print_instruction();

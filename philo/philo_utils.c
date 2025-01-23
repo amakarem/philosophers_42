@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:34:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 17:58:10 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:24:05 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,3 @@ void	print_msg(t_data *data, int id, char *msg)
 		printf("%llu %d %s\n", time, id, msg);
 	pthread_mutex_unlock(&data->mut_print);
 }
-
-// void	print_mut(t_data *data, char *msg)
-// {
-// 	pthread_mutex_lock(&data->mut_print);
-// 	printf("%s\n", msg);
-// 	pthread_mutex_unlock(&data->mut_print);
-// }

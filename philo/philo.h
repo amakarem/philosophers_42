@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:35:25 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 18:15:41 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:29:12 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int			handle_1_philo(t_philo *philo);
 bool		nb_meals_option(t_data *data);
 void		free_data(t_data *data);
 void		print_msg(t_data *data, int id, char *msg);
-int			write_error(char *str);
 int			ft_atoi(const char *str);
 void		wait_until(u_int64_t wakeup_time);
 void		ft_usleep(uint64_t sleep_time);
@@ -113,7 +112,6 @@ void		set_philo_state(t_philo *philo, t_state state);
 bool		philo_died(t_philo *philo);
 void		*all_full_routine(void *data_p);
 void		*all_alive_routine(void *data_p);
-void		*routine(void *philo_p);
 int			philosophers(int argc, char **argv);
 
 #endif
