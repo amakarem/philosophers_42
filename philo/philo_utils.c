@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:34:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 19:24:05 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:44:43 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ bool	nb_meals_option(t_data *data)
 void	free_data(t_data *data)
 {
 	int	i;
-	int	nb_philos;
+	int	philos_qty;
 
-	nb_philos = get_nb_philos(data);
+	philos_qty = get_philos_qty(data);
 	i = -1;
-	while (++i < nb_philos)
+	while (++i < philos_qty)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
 		pthread_mutex_destroy(&data->philos[i].mut_state);
@@ -44,9 +44,9 @@ void	free_data(t_data *data)
 	pthread_mutex_destroy(&data->mut_die_t);
 	pthread_mutex_destroy(&data->mut_eat_t);
 	pthread_mutex_destroy(&data->mut_sleep_t);
-	pthread_mutex_destroy(&data->mut_nb_philos);
+	pthread_mutex_destroy(&data->mut_philos_qty);
 	pthread_mutex_destroy(&data->mut_print);
-	pthread_mutex_destroy(&data->mut_keep_iter);
+	pthread_mutex_destroy(&data->mut_keep_loop);
 	pthread_mutex_destroy(&data->mut_start_time);
 	free(data->philo_ths);
 	free(data->philos);
@@ -59,7 +59,7 @@ void	print_msg(t_data *data, int id, char *msg)
 
 	time = get_time() - get_start_time(data);
 	pthread_mutex_lock(&data->mut_print);
-	if (get_keep_iter(data))
+	if (get_keep_loop(data))
 		printf("%llu %d %s\n", time, id, msg);
 	pthread_mutex_unlock(&data->mut_print);
 }

@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:31:17 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 17:55:22 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:40:11 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	print_instruction(void)
 {
 	printf("\t\tWRONG INPUT!\n\n");
-	printf("./philo nb_philos time_to_die ");
+	printf("./philo philos_qty time_to_die ");
 	printf("time_to_eat time_to_sleep ");
 	printf("number_of_times_each_philosopher_must_eat ");
 	printf("(optional argument)\n");
 	printf("Example:\n\n");
 	printf("./philo 4 800 200 200 5\n\n");
-	printf("nb_philos: 1-200\n");
+	printf("philos_qty: 1-200\n");
 	printf("time_to_die: 60+\n");
 	printf("time_to_eat: 60+\n");
 	printf("time_to_sleep: 60+\n");

@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:39:40 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 19:30:54 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:40:11 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	create_threads(t_data *data)
 	int	i;
 	int	nb_of_philos;
 
-	nb_of_philos = get_nb_philos(data);
+	nb_of_philos = get_philos_qty(data);
 	i = -1;
 	data->start_time = get_time();
 	while (++i < nb_of_philos)
@@ -63,16 +63,16 @@ static int	create_threads(t_data *data)
 static int	join_threads(t_data *data)
 {
 	int	i;
-	int	nb_philos;
+	int	philos_qty;
 
-	nb_philos = get_nb_philos(data);
+	philos_qty = get_philos_qty(data);
 	i = -1;
 	if (pthread_join(data->monit_all_alive, NULL))
 		return (1);
 	if (nb_meals_option(data) == true
 		&& pthread_join(data->monit_all_full, NULL))
 		return (1);
-	while (++i < nb_philos)
+	while (++i < philos_qty)
 	{
 		if (pthread_join(data->philo_ths[i], NULL))
 			return (1);

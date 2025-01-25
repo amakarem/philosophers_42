@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:45:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 18:13:08 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:40:11 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	take_right_fork(t_philo *philo)
 
 int	take_forks(t_philo *philo)
 {
-	if (get_nb_philos(philo->data) == 1)
+	if (get_philos_qty(philo->data) == 1)
 		return (handle_1_philo(philo));
 	if (take_right_fork(philo) != 0)
 		return (1);

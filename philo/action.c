@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:36:46 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 17:38:19 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:44:43 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	ft_sleep(t_philo *philo)
 	return (0);
 }
 
-void	set_keep_iterating(t_data *data, bool set_to)
+void	set_keep_loop(t_data *data, bool set_to)
 {
-	pthread_mutex_lock(&data->mut_keep_iter);
-	data->keep_iterating = set_to;
-	pthread_mutex_unlock(&data->mut_keep_iter);
+	pthread_mutex_lock(&data->mut_keep_loop);
+	data->keep_loop = set_to;
+	pthread_mutex_unlock(&data->mut_keep_loop);
 }
 
 void	set_philo_state(t_philo *philo, t_state state)

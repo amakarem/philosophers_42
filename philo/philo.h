@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:35:25 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/23 19:29:12 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:44:43 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int				nb_philos;
+	int				philos_qty;
 	int				nb_meals;
 	int				nb_full_p;
-	bool			keep_iterating;
+	bool			keep_loop;
 	u_int64_t		eat_time;
 	u_int64_t		die_time;
 	u_int64_t		sleep_time;
@@ -68,8 +68,8 @@ typedef struct s_data
 	pthread_mutex_t	mut_die_t;
 	pthread_mutex_t	mut_sleep_t;
 	pthread_mutex_t	mut_print;
-	pthread_mutex_t	mut_nb_philos;
-	pthread_mutex_t	mut_keep_iter;
+	pthread_mutex_t	mut_philos_qty;
+	pthread_mutex_t	mut_keep_loop;
 	pthread_mutex_t	mut_start_time;
 	pthread_t		monit_all_alive;
 	pthread_t		monit_all_full;
@@ -92,8 +92,8 @@ int			ft_atoi(const char *str);
 void		wait_until(u_int64_t wakeup_time);
 void		ft_usleep(uint64_t sleep_time);
 u_int64_t	get_time(void);
-bool		get_keep_iter(t_data *data);
-int			get_nb_philos(t_data *data);
+bool		get_keep_loop(t_data *data);
+int			get_philos_qty(t_data *data);
 t_state		get_philo_state(t_philo *philo);
 int			get_nb_meals_philo_had(t_philo *philo);
 uint64_t	get_start_time(t_data *data);
@@ -107,7 +107,7 @@ int			take_forks(t_philo *philo);
 int			eat(t_philo *philo);
 int			think(t_philo *philo);
 int			ft_sleep(t_philo *philo);
-void		set_keep_iterating(t_data *data, bool set_to);
+void		set_keep_loop(t_data *data, bool set_to);
 void		set_philo_state(t_philo *philo, t_state state);
 bool		philo_died(t_philo *philo);
 void		*all_full_routine(void *data_p);
