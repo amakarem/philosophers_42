@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:34:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/25 18:44:43 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:05:13 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	print_msg(t_data *data, int id, char *msg)
 	time = get_time() - get_start_time(data);
 	pthread_mutex_lock(&data->mut_print);
 	if (get_keep_loop(data))
-		printf("%llu %d %s\n", time, id, msg);
+		printf("%" PRIu64 " %d %s\n", time, id, msg);
 	pthread_mutex_unlock(&data->mut_print);
 }

@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:35:25 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/25 18:44:43 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:04:55 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <string.h>
 # include <stdint.h>
 # include <stdbool.h>
+# include <inttypes.h>
 
 # define WRONG_INPUT 1
 # define MALLOC_ERROR 2
