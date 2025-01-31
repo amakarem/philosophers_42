@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:34:55 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/31 19:05:13 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:37:14 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	handle_1_philo(t_philo *philo)
 {
 	take_left_fork(philo);
 	ft_usleep(get_die_time(philo->data));
+	pthread_mutex_unlock(philo->left_f);
 	set_philo_state(philo, DEAD);
 	return (1);
 }
