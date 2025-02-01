@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:40:37 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/25 18:44:43 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:08:57 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,17 @@ void	*all_alive_routine(void *data_p)
 	i = -1;
 	while (++i < philos_qty && get_keep_loop(data))
 	{
+		usleep(1000);
 		if (philo_died(&philos[i]) && get_keep_loop(data))
 		{
 			print_msg(data, philos[i].id, DIED);
 			set_keep_loop(data, false);
 			notify_all_philos(data);
+			usleep(1000 * philos_qty);
 			break ;
 		}
 		if (i == philos_qty - 1)
 			i = -1;
-		usleep(1000);
 	}
 	return (NULL);
 }
