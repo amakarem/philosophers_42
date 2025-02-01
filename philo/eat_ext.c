@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:45:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/31 20:04:08 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/02/01 22:40:54 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 static void	drop_right_fork(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->right_f);
+}
+
+static void	drop_left_fork(t_philo *philo)
+{
+	pthread_mutex_unlock(philo->left_f);
 }
 
 int	take_left_fork(t_philo *philo)
@@ -39,12 +44,18 @@ int	take_forks(t_philo *philo)
 {
 	if (get_philos_qty(philo->data) == 1)
 		return (handle_1_philo(philo));
-	if (philo->left_f > philo->right_f) {
+	if (philo->left_f < philo->right_f)
+	{
 		if (take_left_fork(philo) != 0)
 			return (1);
 		if (take_right_fork(philo) != 0)
+		{
+			drop_left_fork(philo);
 			return (1);
-	} else if (philo->left_f < philo->right_f) {
+		}
+	}
+	else
+	{
 		if (take_right_fork(philo) != 0)
 			return (1);
 		if (take_left_fork(philo) != 0)

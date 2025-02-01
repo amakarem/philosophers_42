@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:40:37 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/02/01 21:54:59 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/02/01 22:14:12 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	*all_alive_routine(void *data_p)
 		}
 		if (i == philos_qty - 1)
 			i = -1;
+		ft_usleep(1000);
 	}
 	return (NULL);
 }
