@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:35:25 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/01/31 19:04:55 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:26:27 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 
 # define WRONG_INPUT 1
 # define MALLOC_ERROR 2
-# define TAKE_FORKS "has taken a fork"
+# define TAKE_FORKS "\033[1;34mhas taken a fork\033[0m"
 # define THINK "is thinking"
 # define SLEEP "is sleeping"
-# define EAT "is eating"
-# define DIED "died"
+# define EAT "\033[1;32mis eating\033[0m"
+# define DIED "\033[1;31mdied\033[0m"
 
 typedef enum e_philo_state
 {

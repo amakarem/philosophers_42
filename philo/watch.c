@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:40:37 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/02/08 17:26:42 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/02/08 18:12:48 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*all_full_routine(void *data_p)
 	philos_qty = get_philos_qty(data);
 	while (++i < philos_qty && get_keep_loop(data))
 	{
-		usleep(1000);
+		usleep(1);
 		if (is_philo_full(data, &data->philos[i]) == false)
 			i = -1;
 	}
