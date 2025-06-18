@@ -55,5 +55,6 @@ make bonus       # builds bonus part: ./philo_bonus (if implemented)
 ---
 
 ## Usage
-
+```
 ./philo <#philos> <t_die_ms> <t_eat_ms> <t_sleep_ms> [#times_each_must_eat]
+```
