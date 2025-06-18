@@ -50,6 +50,7 @@ git clone https://github.com/amakarem/philosophers_42.git
 cd philosophers_42
 make             # builds mandatory part: ./philo
 make bonus       # builds bonus part: ./philo_bonus (if implemented)
+```
 
 ---
 
