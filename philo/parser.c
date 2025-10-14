@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:36:59 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 13:48:36 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:51:30 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	show_instruction(void)
 {
-	printf("\t\tWRONG INPUT!\n\n");
+	printf("\n******WRONG INPUT!*****\n\n");
 	printf("Usage:\n./philo philos_qty time_to_die time_to_eat time_to_sleep ");
 	printf("time_to_eat time_to_sleep ");
 	printf("number_of_times_each_philosopher_must_eat (optional argument)\n\n");
@@ -30,6 +30,7 @@ static void	show_instruction(void)
 
 int	validinput(int argc, char **argv)
 {
+	argv = NULL;
 	if (argc < 5)
 		return (show_instruction(), 0);
 	if (argc > 6)
