@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 16:41:48 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:50:33 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,19 @@
 # define ERR_ALLOC_PHILOS  2
 # define ERR_ALLOC_FORKS   3
 # define ERR_ALLOC_THREADS 4
-
-typedef enum e_philo_state
-{
-	EATING = 0,
-	SLEEPING = 1,
-	THINKING = 2,
-	DEAD = 3,
-	FULL = 4,
-	IDLE = 5
-}	t_state;
+# define EATING 0
+# define SLEEPING 1
+# define THINKING 2
+# define DEAD 3
+# define FULL 4
+# define IDLE 5
 
 typedef struct s_philo
 {
 	int				id;
 	int				nb_meals_had;
 	struct s_data	*data;
-	t_state			state;
+	int				state;
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
 	pthread_mutex_t	mut_state;
