@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:59:25 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:19:01 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <pthread.h>
 # include <stdbool.h>
 # include <sys/time.h>
+# include <inttypes.h>
 
 # define ERR_VALIDATION  1
 # define ERR_ALLOC_PHILOS  2
@@ -54,7 +55,7 @@ typedef struct s_data
 	int				philos_qty;
 	int				nb_meals;
 	int				nb_full_p;
-	bool			keep_loop;
+	int				keep_loop;
 	uint64_t		eat_time;
 	uint64_t		die_time;
 	uint64_t		sleep_time;
@@ -78,6 +79,7 @@ int			validinput(int argc, char **argv);
 int			init_data(t_data *data, int argc, char **argv);
 uint64_t	get_time(void);
 void		mutex_update_u64(pthread_mutex_t *mutex, uint64_t *target, uint64_t value);
+uint64_t	mutex_get_u64(pthread_mutex_t *mutex, uint64_t *target);
 int			mutex_get_int(pthread_mutex_t *mutex, int *target);
 void		free_data(t_data *data);
 

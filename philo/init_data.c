@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:56:47 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:42:52 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:16:38 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	init_data_mutexes(t_data *data)
 int	init_data(t_data *data, int argc, char **argv)
 {
 	data->nb_full_p = 0;
-	data->keep_loop = true;
+	data->keep_loop = 1;
 	data->nb_meals = -1;
 	data->philos_qty = ft_atoi(argv[1]);
 	data->die_time = (uint64_t)ft_atoi(argv[2]);
