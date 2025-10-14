@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 16:50:33 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:56:26 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define DEAD 3
 # define FULL 4
 # define IDLE 5
+# define MSN_TAKE_FORKS "has taken a fork"
+# define MSN_THINK "is thinking"
+# define MSN_SLEEP "is sleeping"
+# define MSN_EAT "is eating"
+# define MSN_DIED "died"
 
 typedef struct s_philo
 {
