@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:33:17 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:31:18 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:03:21 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int main(int argc, char **argv)
 {
+	int status;
+	t_data	data;
+
 	if (!validinput(argc, argv)) return (ERR_VALIDATION);
-	return (0);
+	status = init_data(&data, argc, argv);
+	free_data(&data);
+	return (status);
 }
