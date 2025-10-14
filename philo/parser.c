@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:36:59 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 13:51:30 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:56:40 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,32 @@ static void	show_instruction(void)
 	printf("number_of_times_each_philosopher_must_eat: 0+\n");
 }
 
+static int	is_input_digit(int argc, char **argv)
+{
+	int	i;
+	int	k;
+
+	i = 1;
+	while (i < argc)
+	{
+		k = 0;
+		while (argv[i][k] != '\0')
+		{
+			if (argv[i][k] < '0' || argv[i][k] > '9')
+				return (0);
+			k++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	validinput(int argc, char **argv)
 {
 	argv = NULL;
-	if (argc < 5)
+	if (argc < 5 || argc > 6)
 		return (show_instruction(), 0);
-	if (argc > 6)
+	if (!is_input_digit(argc, argv))
 		return (show_instruction(), 0);
 	return (1);
 }
