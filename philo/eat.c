@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:50:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:39:04 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:42:09 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static int	handle_1_philo(t_philo *philo)
 
 static int	take_forks(t_philo *philo)
 {
-	if (get_philos_qty(philo->data) == 1)
+	if (mutex_get_int(&philo->data->mut_philos_qty,
+			&philo->data->philos_qty) == 1)
 		return (handle_1_philo(philo));
 	if (philo->left_f < philo->right_f)
 	{

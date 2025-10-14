@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:33:17 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:36:48 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:42:26 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	join_threads(t_data *data)
 	int	i;
 	int	philos_qty;
 
-	philos_qty = get_philos_qty(data);
+	philos_qty = mutex_get_int(&data->mut_philos_qty, &data->philos_qty);
 	i = -1;
 	if (pthread_join(data->monit_all_alive, NULL))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:05:20 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:34:18 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:42:59 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	kill_all_philos(t_data *data)
 	int		i;
 	int		philos_qty;
 
-	philos_qty = get_philos_qty(data);
+	philos_qty = mutex_get_int(&data->mut_philos_qty, &data->philos_qty);
 	philos = data->philos;
 	i = -1;
 	while (++i < philos_qty)
@@ -58,7 +58,7 @@ static void	*all_full_routine(void *data_p)
 
 	data = (t_data *)data_p;
 	i = -1;
-	philos_qty = get_philos_qty(data);
+	philos_qty = mutex_get_int(&data->mut_philos_qty, &data->philos_qty);
 	while (++i < philos_qty
 		&& mutex_get_int(&data->mut_keep_loop, &data->keep_loop))
 	{
@@ -83,11 +83,13 @@ static void	*all_alive_routine(void *data_p)
 
 	data = (t_data *)data_p;
 	philos = data->philos;
-	philos_qty = get_philos_qty(data);
+	philos_qty = mutex_get_int(&data->mut_philos_qty, &data->philos_qty);
 	i = -1;
-	while (++i < philos_qty && get_keep_loop(data))
+	while (++i < philos_qty
+		&& mutex_get_int(&data->mut_keep_loop, &data->keep_loop))
 	{
-		if (is_died(&philos[i]) && get_keep_loop(data))
+		if (is_died(&philos[i])
+			&& mutex_get_int(&data->mut_keep_loop, &data->keep_loop))
 		{
 			mutex_print(data, philos[i].id, MSG_DIED);
 			mutex_update_int(&data->mut_keep_loop, &data->keep_loop, 0);
