@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 17:31:26 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:55:11 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@
 # define MSG_SLEEP "is sleeping"
 # define MSG_EAT "is eating"
 # define MSG_DIED "died"
+
+typedef enum e_fork_side
+{
+    LEFT,
+    RIGHT
+}   t_fork_side;
 
 typedef struct s_philo
 {
@@ -91,5 +97,7 @@ int			get_keep_loop(t_data *data);
 int			get_philos_qty(t_data *data);
 int			get_philo_state(t_philo *philo);
 int			get_nb_meals_philo_had(t_philo *philo);
+int			eat(t_philo *philo);
+bool 		is_died(t_philo *philo);
 
 #endif
