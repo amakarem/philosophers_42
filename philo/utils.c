@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:53:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:59:02 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:01:58 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_isspace(int c)
 
 static int	ft_return_max(int flag)
 {
-	if (flag == 1)
+	if (flag == 100)
 		return (2147483647);
 	return (-2147483648);
 }

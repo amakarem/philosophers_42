@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:36:59 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:31:53 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:13:07 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	show_instruction(char *msg)
 {
-	printf("\n******WRONG INPUT!*****\n\n");
+	printf("\n******INVALID INPUT!*****\n\n");
 	if (msg != NULL)
 		printf("%s\n", msg);
 	printf("Usage:\n./philo philos_qty time_to_die time_to_eat time_to_sleep ");
@@ -73,6 +73,6 @@ int	validinput(int argc, char **argv)
 	if (!is_input_digit(argc, argv))
 		return (show_instruction("+++++ INPUT MUST BE DIGITS +++++\n"), 0);
 	if (is_invalid_input(argc, argv))
-		return (show_instruction("+++++ INVLIAD INPUT +++++\n"), 0);
+		return (show_instruction("+++++ INVALID INPUT RANGE +++++\n"), 0);
 	return (1);
 }
