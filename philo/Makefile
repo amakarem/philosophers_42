@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/14 13:49:00 by aelaaser          #+#    #+#              #
-#    Updated: 2025/10/14 13:54:00 by aelaaser         ###   ########.fr        #
+#    Updated: 2025/10/14 15:32:06 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	philo.c parser.c utils.c
+SRCS = 	philo.c validation.c utils.c
 
 OBJS = $(SRCS:.c=.o)
 

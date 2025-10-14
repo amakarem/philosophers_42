@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:18:19 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:28:07 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <pthread.h>
 # include <stdbool.h>
 # include <sys/time.h>
+
+# define ERR_VALIDATION  1
+# define ERR_ALLOC_PHILOS  2
+# define ERR_ALLOC_FORKS   3
+# define ERR_ALLOC_THREADS 4
 
 typedef enum e_philo_state
 {
