@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:50:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:21:02 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:39:04 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	set_philo_state(t_philo *philo, int state)
 
 static int	take_fork(t_philo *philo, t_fork_side side)
 {
-    if (is_died(philo) || get_philo_state(philo) == DEAD)
-        return (1);
-    if (side == LEFT)
-        pthread_mutex_lock(philo->left_f);
-    else
+	if (is_died(philo) || get_philo_state(philo) == DEAD)
+		return (1);
+	if (side == LEFT)
+		pthread_mutex_lock(philo->left_f);
+	else
 	{
-        pthread_mutex_lock(philo->right_f);
+		pthread_mutex_lock(philo->right_f);
 	}
 	mutex_print(philo->data, philo->id, MSG_TAKE_FORKS);
-    return (0);
+	return (0);
 }
 
 static int	handle_1_philo(t_philo *philo)
@@ -76,7 +76,8 @@ int	eat(t_philo *philo)
 		return (1);
 	set_philo_state(philo, EATING);
 	mutex_print(philo->data, philo->id, MSG_EAT);
-	mutex_update_u64(&philo->mut_last_eat_time, &philo->last_eat_time, get_time());
+	mutex_update_u64(&philo->mut_last_eat_time,
+		&philo->last_eat_time, get_time());
 	ft_usleep(mutex_get_u64(&philo->data->mut_eat_t, &philo->data->eat_time));
 	mutex_increment(&philo->mut_nb_meals_had, &philo->nb_meals_had);
 	pthread_mutex_unlock(philo->left_f);

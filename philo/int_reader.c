@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:25:28 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 17:31:56 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:37:54 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	mutex_get_int(pthread_mutex_t *mutex, int *target)
 {
-
 	int	value;
 
 	pthread_mutex_lock(mutex);

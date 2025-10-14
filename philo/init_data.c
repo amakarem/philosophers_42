@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:56:47 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 16:16:38 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:38:13 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	init_philos(t_data *data)
 		pthread_mutex_init(&philos[i].mut_state, NULL);
 		pthread_mutex_init(&philos[i].mut_nb_meals_had, NULL);
 		pthread_mutex_init(&philos[i].mut_last_eat_time, NULL);
-		mutex_update_u64(&philos[i].mut_last_eat_time, &philos[i].last_eat_time, get_time());
+		mutex_update_u64(&philos[i].mut_last_eat_time,
+			&philos[i].last_eat_time, get_time());
 	}
 	return (assign_forks(data));
 }

@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:53:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:01:58 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:31:52 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_atoi(const char *str)
 	}
 	return (nbr * flag);
 }
+
 static void	destroy_mutexes(t_data *data)
 {
 	int	i;

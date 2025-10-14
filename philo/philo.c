@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:33:17 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 18:43:52 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:36:48 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ static int	join_threads(t_data *data)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int status;
+	int		status;
 	t_data	data;
 
-	if (!validinput(argc, argv)) return (ERR_VALIDATION);
+	if (!validinput(argc, argv))
+		return (ERR_VALIDATION);
 	status = init_data(&data, argc, argv);
 	if (status == 0)
 	{

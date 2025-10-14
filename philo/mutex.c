@@ -6,13 +6,14 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:48:58 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 18:42:12 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:37:18 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	mutex_update_u64(pthread_mutex_t *mutex, uint64_t *target, uint64_t value)
+void	mutex_update_u64(pthread_mutex_t *mutex,
+			uint64_t *target, uint64_t value)
 {
 	pthread_mutex_lock(mutex);
 	*target = value;

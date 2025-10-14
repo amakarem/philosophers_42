@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:05:20 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 18:43:10 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:34:18 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	*routine(void *philo_p)
 	t_philo	*philo;
 
 	philo = (t_philo *) philo_p;
-	mutex_update_u64(&philo->mut_last_eat_time, &philo->last_eat_time, get_time());
+	mutex_update_u64(&philo->mut_last_eat_time,
+		&philo->last_eat_time, get_time());
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->data->eat_time - 10);
 	while (mutex_get_int(&philo->mut_state, &philo->state) != DEAD)
@@ -58,20 +59,20 @@ static void	*all_full_routine(void *data_p)
 	data = (t_data *)data_p;
 	i = -1;
 	philos_qty = get_philos_qty(data);
-	while (++i < philos_qty && get_keep_loop(data))
+	while (++i < philos_qty
+		&& mutex_get_int(&data->mut_keep_loop, &data->keep_loop))
 	{
 		usleep(1);
 		if (get_nb_meals_philo_had(&data->philos[i]) < data->nb_meals)
 			i = -1;
 	}
-	if (get_keep_loop(data) == true)
+	if (mutex_get_int(&data->mut_keep_loop, &data->keep_loop) == true)
 	{
 		mutex_update_int(&data->mut_keep_loop, &data->keep_loop, 0);
 		kill_all_philos(data);
 	}
 	return (NULL);
 }
-
 
 static void	*all_alive_routine(void *data_p)
 {

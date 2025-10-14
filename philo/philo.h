@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 18:43:59 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:35:58 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@
 
 typedef enum e_fork_side
 {
-    LEFT,
-    RIGHT
-}   t_fork_side;
+	LEFT,
+	RIGHT
+}	t_fork_side;
 
 typedef struct s_philo
 {
@@ -87,7 +87,8 @@ int			init_data(t_data *data, int argc, char **argv);
 uint64_t	get_time(void);
 void		ft_usleep(uint64_t sleep_time);
 void		ft_wait(u_int64_t wakeup_time);
-void		mutex_update_u64(pthread_mutex_t *mutex, uint64_t *target, uint64_t value);
+void		mutex_update_u64(pthread_mutex_t *mutex,
+				uint64_t *target, uint64_t value);
 uint64_t	mutex_get_u64(pthread_mutex_t *mutex, uint64_t *target);
 void		mutex_update_int(pthread_mutex_t *mutex, int *target, int value);
 void		mutex_increment(pthread_mutex_t *mutex, int *target);
@@ -105,7 +106,7 @@ uint64_t	get_eat_time(t_data *data);
 uint64_t	get_last_eat_time(t_philo *philo);
 void		set_philo_state(t_philo *philo, int state);
 int			eat(t_philo *philo);
-bool 		is_died(t_philo *philo);
+bool		is_died(t_philo *philo);
 int			think(t_philo *philo);
 int			create_threads(t_data *data);
 int			to_sleep(t_philo *philo);
