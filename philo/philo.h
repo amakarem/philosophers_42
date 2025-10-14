@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 13:50:14 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:53:41 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <stdio.h>
 
 int		validinput(int argc, char **argv);
+int		ft_atoi(const char *str);
 
 #endif
