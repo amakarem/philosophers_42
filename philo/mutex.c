@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:48:58 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 16:19:31 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:10:14 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ uint64_t	mutex_get_u64(pthread_mutex_t *mutex, uint64_t *target)
 	value = *target;
 	pthread_mutex_unlock(mutex);
 	return (value);
+}
+
+void	mutex_update_int(pthread_mutex_t *mutex, int *target, int value)
+{
+	pthread_mutex_lock(mutex);
+	*target = value;
+	pthread_mutex_unlock(mutex);
+}
+
+void	mutex_increment(pthread_mutex_t *mutex, int *target)
+{
+	pthread_mutex_lock(mutex);
+	*target++;
+	pthread_mutex_unlock(mutex);
 }
 
 int	mutex_get_int(pthread_mutex_t *mutex, int *target)
