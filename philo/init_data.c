@@ -6,11 +6,52 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:56:47 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:02:19 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:42:52 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	assign_forks(t_data *data)
+{
+	int		i;
+	t_philo	*philos;
+
+	philos = data->philos;
+	i = -1;
+	while (++i < data->philos_qty)
+		pthread_mutex_init(&data->forks[i], NULL);
+	i = 0;
+	philos[0].left_f = &data->forks[0];
+	philos[0].right_f = &data->forks[data->philos_qty - 1];
+	while (++i < data->philos_qty)
+	{
+		philos[i].left_f = &data->forks[i];
+		philos[i].right_f = &data->forks[i - 1];
+	}
+	return (0);
+}
+
+static int	init_philos(t_data *data)
+{
+	t_philo	*philos;
+	int		i;
+
+	i = -1;
+	philos = data->philos;
+	while (++i < data->philos_qty)
+	{
+		philos[i].data = data;
+		philos[i].id = i + 1;
+		philos[i].nb_meals_had = 0;
+		philos[i].state = IDLE;
+		pthread_mutex_init(&philos[i].mut_state, NULL);
+		pthread_mutex_init(&philos[i].mut_nb_meals_had, NULL);
+		pthread_mutex_init(&philos[i].mut_last_eat_time, NULL);
+		mutex_update_u64(&philos[i].mut_last_eat_time, &philos[i].last_eat_time, get_time());
+	}
+	return (assign_forks(data));
+}
 
 static void	init_data_mutexes(t_data *data)
 {
@@ -37,12 +78,12 @@ int	init_data(t_data *data, int argc, char **argv)
 	init_data_mutexes(data);
 	data->philos = malloc(sizeof(t_philo) * data->philos_qty);
 	if (data->philos == NULL)
-		return (2);
+		return (ERR_ALLOC_PHILOS);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->philos_qty);
 	if (data->forks == NULL)
-		return (free(data->philos), 2);
+		return (free(data->philos), ERR_ALLOC_FORKS);
 	data->philo_ths = malloc(sizeof(pthread_t) * data->philos_qty);
 	if (data->philo_ths == NULL)
-		return (free(data->philos), free(data->forks), 2);
-	return (0);
+		return (free(data->philos), free(data->forks), ERR_ALLOC_THREADS);
+	return (init_philos(data));
 }
