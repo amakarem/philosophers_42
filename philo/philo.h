@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 16:19:01 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:41:48 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int			ft_atoi(const char *str);
 int			validinput(int argc, char **argv);
 int			init_data(t_data *data, int argc, char **argv);
 uint64_t	get_time(void);
+void		ft_usleep(uint64_t sleep_time);
+void		ft_wait(u_int64_t wakeup_time);
 void		mutex_update_u64(pthread_mutex_t *mutex, uint64_t *target, uint64_t value);
 uint64_t	mutex_get_u64(pthread_mutex_t *mutex, uint64_t *target);
 int			mutex_get_int(pthread_mutex_t *mutex, int *target);
