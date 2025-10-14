@@ -6,7 +6,7 @@
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/14 13:49:00 by aelaaser          #+#    #+#              #
-#    Updated: 2025/10/14 16:04:05 by aelaaser         ###   ########.fr        #
+#    Updated: 2025/10/14 17:39:33 by aelaaser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	philo.c validation.c utils.c time.c mutex.c init_data.c
+SRCS = 	philo.c validation.c utils.c time.c mutex.c init_data.c int_reader.c u64_reader.c
 
 OBJS = $(SRCS:.c=.o)
 
