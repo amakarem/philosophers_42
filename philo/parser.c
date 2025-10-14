@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:36:59 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 13:46:29 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:48:36 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	show_instruction(void)
 int	validinput(int argc, char **argv)
 {
 	if (argc < 5)
-		return (0);
+		return (show_instruction(), 0);
 	if (argc > 6)
-		return (0);
+		return (show_instruction(), 0);
 	return (1);
 }
