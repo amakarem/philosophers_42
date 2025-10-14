@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:48:58 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 17:10:14 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:30:02 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ void	mutex_increment(pthread_mutex_t *mutex, int *target)
 	pthread_mutex_lock(mutex);
 	*target++;
 	pthread_mutex_unlock(mutex);
-}
-
-int	mutex_get_int(pthread_mutex_t *mutex, int *target)
-{
-
-	int	value;
-
-	pthread_mutex_lock(mutex);
-	value = (int)(*target);
-	pthread_mutex_unlock(mutex);
-	return (value);
 }
 
 void	mutex_print(t_data *data, int id, char *msg)

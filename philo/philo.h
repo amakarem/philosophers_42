@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 16:56:26 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:31:26 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 # define DEAD 3
 # define FULL 4
 # define IDLE 5
-# define MSN_TAKE_FORKS "has taken a fork"
-# define MSN_THINK "is thinking"
-# define MSN_SLEEP "is sleeping"
-# define MSN_EAT "is eating"
-# define MSN_DIED "died"
+# define MSG_TAKE_FORKS "has taken a fork"
+# define MSG_THINK "is thinking"
+# define MSG_SLEEP "is sleeping"
+# define MSG_EAT "is eating"
+# define MSG_DIED "died"
 
 typedef struct s_philo
 {
@@ -83,7 +83,13 @@ void		ft_usleep(uint64_t sleep_time);
 void		ft_wait(u_int64_t wakeup_time);
 void		mutex_update_u64(pthread_mutex_t *mutex, uint64_t *target, uint64_t value);
 uint64_t	mutex_get_u64(pthread_mutex_t *mutex, uint64_t *target);
+void		mutex_update_int(pthread_mutex_t *mutex, int *target, int value);
+void		mutex_increment(pthread_mutex_t *mutex, int *target);
 int			mutex_get_int(pthread_mutex_t *mutex, int *target);
 void		free_data(t_data *data);
+int			get_keep_loop(t_data *data);
+int			get_philos_qty(t_data *data);
+int			get_philo_state(t_philo *philo);
+int			get_nb_meals_philo_had(t_philo *philo);
 
 #endif
