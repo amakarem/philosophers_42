@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:09:13 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 17:55:01 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:59:35 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ bool is_died(t_philo *philo)
         return false;
     set_philo_state(philo, DEAD);
     return true;
+}
+
+int	think(t_philo *philo)
+{
+	set_philo_state(philo, THINKING);
+	if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
+		return (1);
+	mutex_print(philo->data, philo->id, MSG_THINK);
+	return (0);
 }
