@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:28:07 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:59:25 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ int			validinput(int argc, char **argv);
 int			init_data(t_data *data, int argc, char **argv);
 uint64_t	get_time(void);
 void		mutex_update_u64(pthread_mutex_t *mutex, uint64_t *target, uint64_t value);
+int			mutex_get_int(pthread_mutex_t *mutex, int *target);
+void		free_data(t_data *data);
 
 #endif

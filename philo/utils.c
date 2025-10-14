@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:53:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 15:18:23 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:59:02 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,39 @@ int	ft_atoi(const char *str)
 	}
 	return (nbr * flag);
 }
-
-void	mutex_update_u64(pthread_mutex_t *mutex, uint64_t *target, uint64_t value)
+static void	destroy_mutexes(t_data *data)
 {
-	pthread_mutex_lock(mutex);
-	*target = value;
-	pthread_mutex_unlock(mutex);
+	int	i;
+	int	philos_qty;
+
+	philos_qty = mutex_get_int(&data->mut_philos_qty, &data->philos_qty);
+	i = -1;
+	while (++i < philos_qty)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&data->philos[i].mut_state);
+		pthread_mutex_destroy(&data->philos[i].mut_nb_meals_had);
+		pthread_mutex_destroy(&data->philos[i].mut_last_eat_time);
+	}
+	pthread_mutex_destroy(&data->mut_die_t);
+	pthread_mutex_destroy(&data->mut_eat_t);
+	pthread_mutex_destroy(&data->mut_sleep_t);
+	pthread_mutex_destroy(&data->mut_philos_qty);
+	pthread_mutex_destroy(&data->mut_print);
+	pthread_mutex_destroy(&data->mut_keep_loop);
+	pthread_mutex_destroy(&data->mut_start_time);
+}
+
+void	free_data(t_data *data)
+{
+	destroy_mutexes(data);
+	if (data->philo_ths)
+		free(data->philo_ths);
+	if (data->philos)
+		free(data->philos);
+	if (data->forks)
+		free(data->forks);
+	data->philo_ths = NULL;
+	data->philos = NULL;
+	data->forks = NULL;
 }
