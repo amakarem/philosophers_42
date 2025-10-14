@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:50:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 18:43:48 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:21:02 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static int	take_fork(t_philo *philo, t_fork_side side)
     if (side == LEFT)
         pthread_mutex_lock(philo->left_f);
     else
+	{
         pthread_mutex_lock(philo->right_f);
+	}
 	mutex_print(philo->data, philo->id, MSG_TAKE_FORKS);
     return (0);
 }
