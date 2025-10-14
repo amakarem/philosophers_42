@@ -18,7 +18,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	eat.c init_data.c int_reader.c mutex.c philo.c routine.c service.c time.c u64_reader.c utils.c validation.c
+SRCS = 	eat.c init_data.c int_reader.c mutex.c philo.c routine.c service.c time.c utils.c validation.c
 
 OBJS = $(SRCS:.c=.o)
 

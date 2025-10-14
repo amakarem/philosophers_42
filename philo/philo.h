@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:43:10 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 20:02:53 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,6 @@ void		mutex_increment(pthread_mutex_t *mutex, int *target);
 int			mutex_get_int(pthread_mutex_t *mutex, int *target);
 void		mutex_print(t_data *data, int id, char *msg);
 void		free_data(t_data *data);
-// int			get_keep_loop(t_data *data);
-// int			get_philos_qty(t_data *data);
-int			get_philo_state(t_philo *philo);
-int			get_nb_meals_philo_had(t_philo *philo);
-uint64_t	get_start_time(t_data *data);
-uint64_t	get_die_time(t_data *data);
-uint64_t	get_sleep_time(t_data *data);
-uint64_t	get_eat_time(t_data *data);
-uint64_t	get_last_eat_time(t_philo *philo);
 void		set_philo_state(t_philo *philo, int state);
 int			eat(t_philo *philo);
 bool		is_died(t_philo *philo);

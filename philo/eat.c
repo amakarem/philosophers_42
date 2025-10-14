@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:50:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:42:09 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:55:12 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	set_philo_state(t_philo *philo, int state)
 
 static int	take_fork(t_philo *philo, t_fork_side side)
 {
-	if (is_died(philo) || get_philo_state(philo) == DEAD)
+	if (is_died(philo)
+		|| mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
 		return (1);
 	if (side == LEFT)
 		pthread_mutex_lock(philo->left_f);
@@ -37,7 +38,7 @@ static int	take_fork(t_philo *philo, t_fork_side side)
 static int	handle_1_philo(t_philo *philo)
 {
 	take_fork(philo, LEFT);
-	ft_usleep(get_die_time(philo->data));
+	ft_usleep(mutex_get_u64(&philo->data->mut_die_t, &philo->data->die_time));
 	set_philo_state(philo, DEAD);
 	pthread_mutex_unlock(philo->left_f);
 	return (1);

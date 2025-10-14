@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:09:13 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:33:19 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:59:36 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ bool	is_died(t_philo *philo)
 {
 	uint64_t	time_since_last_meal;
 
-	time_since_last_meal = get_time() - get_last_eat_time(philo);
-	if (time_since_last_meal <= get_die_time(philo->data))
+	time_since_last_meal = get_time()
+		- mutex_get_u64(&philo->mut_last_eat_time, &philo->last_eat_time);
+	if (time_since_last_meal
+		<= mutex_get_u64(&philo->data->mut_die_t, &philo->data->die_time))
 		return (false);
-	if (get_philo_state(philo) == EATING)
+	if (mutex_get_int(&philo->mut_state, &philo->state) == EATING)
 		return (false);
 	set_philo_state(philo, DEAD);
 	return (true);
@@ -37,9 +39,10 @@ int	think(t_philo *philo)
 int	to_sleep(t_philo *philo)
 {
 	set_philo_state(philo, SLEEPING);
-	if (get_philo_state(philo) == DEAD)
+	if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
 		return (1);
 	mutex_print(philo->data, philo->id, MSG_SLEEP);
-	ft_usleep(get_sleep_time(philo->data));
+	ft_usleep(mutex_get_u64(&philo->data->mut_sleep_t,
+			&philo->data->sleep_time));
 	return (0);
 }

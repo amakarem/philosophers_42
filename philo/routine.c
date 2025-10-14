@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:05:20 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:42:59 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:53:06 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ static void	*all_full_routine(void *data_p)
 		&& mutex_get_int(&data->mut_keep_loop, &data->keep_loop))
 	{
 		usleep(1);
-		if (get_nb_meals_philo_had(&data->philos[i]) < data->nb_meals)
+		if (mutex_get_int(&data->philos[i].mut_nb_meals_had,
+				&data->philos[i].nb_meals_had)
+			< data->nb_meals)
 			i = -1;
 	}
 	if (mutex_get_int(&data->mut_keep_loop, &data->keep_loop) == true)
