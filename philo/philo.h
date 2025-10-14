@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 14:53:25 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:12:54 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <sys/time.h>
 
 typedef enum e_philo_state
 {
@@ -67,7 +68,9 @@ typedef struct s_data
 	t_philo			*philos;
 }	t_data;
 
-int		validinput(int argc, char **argv);
-int		ft_atoi(const char *str);
+int			ft_atoi(const char *str);
+int			validinput(int argc, char **argv);
+int			init_data(t_data *data, int argc, char **argv);
+uint64_t	get_time(void);
 
 #endif
