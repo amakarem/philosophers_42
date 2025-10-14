@@ -1,13 +1,13 @@
 # **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
+#        #
+#       :::      ::::::::    #
+#    Makefile             :+:      :+:    :+:    #
+#             +:+ +:+         +:+      #
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/14 13:49:00 by aelaaser          #+#    #+#              #
-#    Updated: 2025/10/14 17:56:28 by aelaaser         ###   ########.fr        #
-#                                                                              #
+#         +#+#+#+#+#+   +#+  #
+#    Created: 2025/10/14 13:49:00 by aelaaser          #+#    #+#    #
+#    Updated: 2025/10/14 18:21:29 by aelaaser         ###   ########.fr        #
+#        #
 # **************************************************************************** #
 
 # Library name
@@ -18,7 +18,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
-SRCS = 	philo.c validation.c utils.c time.c mutex.c init_data.c int_reader.c u64_reader.c eat.c servce.c
+SRCS = 	eat.c init_data.c int_reader.c mutex.c philo.c routine.c service.c time.c u64_reader.c utils.c validation.c
 
 OBJS = $(SRCS:.c=.o)
 

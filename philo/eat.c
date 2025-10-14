@@ -6,11 +6,19 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:50:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 17:56:01 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:43:48 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	set_philo_state(t_philo *philo, int state)
+{
+	pthread_mutex_lock(&philo->mut_state);
+	if (philo->state != DEAD)
+		philo->state = state;
+	pthread_mutex_unlock(&philo->mut_state);
+}
 
 static int	take_fork(t_philo *philo, t_fork_side side)
 {
@@ -20,13 +28,13 @@ static int	take_fork(t_philo *philo, t_fork_side side)
         pthread_mutex_lock(philo->left_f);
     else
         pthread_mutex_lock(philo->right_f);
-    print_msg(philo->data, philo->id, MSG_TAKE_FORKS);
+	mutex_print(philo->data, philo->id, MSG_TAKE_FORKS);
     return (0);
 }
 
 static int	handle_1_philo(t_philo *philo)
 {
-	take_left_fork(philo);
+	take_fork(philo, LEFT);
 	ft_usleep(get_die_time(philo->data));
 	set_philo_state(philo, DEAD);
 	pthread_mutex_unlock(philo->left_f);
@@ -58,15 +66,6 @@ static int	take_forks(t_philo *philo)
 		}
 	}
 	return (0);
-}
-
-
-void	set_philo_state(t_philo *philo, int state)
-{
-	pthread_mutex_lock(&philo->mut_state);
-	if (philo->state != DEAD)
-		philo->state = state;
-	pthread_mutex_unlock(&philo->mut_state);
 }
 
 int	eat(t_philo *philo)

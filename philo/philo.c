@@ -6,36 +6,31 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:33:17 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 18:00:27 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:43:52 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	*routine(void *philo_p)
+static int	join_threads(t_data *data)
 {
-	t_philo	*philo;
+	int	i;
+	int	philos_qty;
 
-	philo = (t_philo *) philo_p;
-	mutex_update_u64(&philo->mut_last_eat_time, &philo->last_eat_time, get_time());
-	if (philo->id % 2 == 0)
-		ft_usleep(philo->data->eat_time - 10);
-	while (mutex_get_int(&philo->mut_state, &philo->state) != DEAD)
+	philos_qty = get_philos_qty(data);
+	i = -1;
+	if (pthread_join(data->monit_all_alive, NULL))
+		return (1);
+	if (data->nb_meals > 0
+		&& pthread_join(data->monit_all_full, NULL))
+		return (1);
+	while (++i < philos_qty)
 	{
-		if (eat(philo) != 0)
-			break ;
-		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
-			break ;
-		if (ft_sleep(philo) != 0)
-			break ;
-		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
-			break ;
-		if (think(philo) != 0)
-			break ;
+		if (pthread_join(data->philo_ths[i], NULL))
+			return (1);
 	}
-	return (NULL);
+	return (0);
 }
-
 
 int main(int argc, char **argv)
 {
@@ -44,6 +39,11 @@ int main(int argc, char **argv)
 
 	if (!validinput(argc, argv)) return (ERR_VALIDATION);
 	status = init_data(&data, argc, argv);
+	if (status == 0)
+	{
+		create_threads(&data);
+		join_threads(&data);
+	}
 	free_data(&data);
 	return (status);
 }
