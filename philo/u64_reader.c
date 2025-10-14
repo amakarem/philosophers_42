@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:35:47 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 17:38:56 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:41:48 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 uint64_t	get_start_time(t_data *data)
 {
-	return (mutex_get_u64(&data->mut_start_time, &data->mut_start_time));
+	return (mutex_get_u64(&data->mut_start_time, &data->start_time));
 }
 
 uint64_t	get_die_time(t_data *data)
