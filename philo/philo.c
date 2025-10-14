@@ -6,34 +6,34 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:33:17 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 16:37:46 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:00:27 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	create_threads(t_data *data)
+static void	*routine(void *philo_p)
 {
-	int	i;
-	int	nb_of_philos;
+	t_philo	*philo;
 
-	nb_of_philos = mutex_get_int(&data->mut_philos_qty, &data->philos_qty);
-	i = -1;
-	data->start_time = get_time();
-	while (++i < nb_of_philos)
+	philo = (t_philo *) philo_p;
+	mutex_update_u64(&philo->mut_last_eat_time, &philo->last_eat_time, get_time());
+	if (philo->id % 2 == 0)
+		ft_usleep(philo->data->eat_time - 10);
+	while (mutex_get_int(&philo->mut_state, &philo->state) != DEAD)
 	{
-		if (pthread_create(&data->philo_ths[i], NULL,
-				&routine, &data->philos[i]))
-			return (1);
+		if (eat(philo) != 0)
+			break ;
+		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
+			break ;
+		if (ft_sleep(philo) != 0)
+			break ;
+		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
+			break ;
+		if (think(philo) != 0)
+			break ;
 	}
-	if (pthread_create(&data->monit_all_alive, NULL,
-			&all_alive_routine, data))
-		return (1);
-	if (data->nb_meals > 0
-		&& pthread_create(&data->monit_all_full, NULL,
-			&all_full_routine, data))
-		return (1);
-	return (0);
+	return (NULL);
 }
 
 
