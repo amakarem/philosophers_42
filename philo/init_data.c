@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:56:47 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/15 14:30:27 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 14:49:47 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,23 @@ static int	init_philos(t_data *data)
 		philos[i].nb_meals_had = 0;
 		philos[i].state = IDLE;
 		pthread_mutex_init(&philos[i].mut_state, NULL);
-		pthread_mutex_init(&philos[i].mut_nb_meals_had, NULL);
 		pthread_mutex_init(&philos[i].mut_last_eat_time, NULL);
 		mutex_update_u64(&philos[i].mut_last_eat_time,
 			&philos[i].last_eat_time, get_time());
+		pthread_mutex_init(&philos[i].mut_nb_meals_had, NULL);
 	}
 	return (assign_forks(data));
 }
 
 static void	init_data_mutexes(t_data *data)
 {
-	pthread_mutex_init(&data->mut_eat_t, NULL);
-	pthread_mutex_init(&data->mut_sleep_t, NULL);
-	pthread_mutex_init(&data->mut_die_t, NULL);
-	pthread_mutex_init(&data->mut_print, NULL);
 	pthread_mutex_init(&data->mut_philos_qty, NULL);
 	pthread_mutex_init(&data->mut_keep_loop, NULL);
+	pthread_mutex_init(&data->mut_eat_t, NULL);
+	pthread_mutex_init(&data->mut_die_t, NULL);
+	pthread_mutex_init(&data->mut_sleep_t, NULL);
 	pthread_mutex_init(&data->mut_start_time, NULL);
+	pthread_mutex_init(&data->mut_print, NULL);
 }
 
 int	init_data(t_data *data, int argc, char **argv)
@@ -70,8 +70,8 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->keep_loop = 1;
 	data->nb_meals = -1;
 	data->philos_qty = ft_atoi(argv[1]);
-	data->die_time = (uint64_t)ft_atoi(argv[2]);
 	data->eat_time = (uint64_t)ft_atoi(argv[3]);
+	data->die_time = (uint64_t)ft_atoi(argv[2]);
 	data->sleep_time = (uint64_t)ft_atoi(argv[4]);
 	if (argc == 6)
 		data->nb_meals = ft_atoi(argv[5]);

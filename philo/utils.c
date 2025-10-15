@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:53:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:31:52 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 14:48:27 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ static void	destroy_mutexes(t_data *data)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
 		pthread_mutex_destroy(&data->philos[i].mut_state);
-		pthread_mutex_destroy(&data->philos[i].mut_nb_meals_had);
 		pthread_mutex_destroy(&data->philos[i].mut_last_eat_time);
+		pthread_mutex_destroy(&data->philos[i].mut_nb_meals_had);
 	}
-	pthread_mutex_destroy(&data->mut_die_t);
-	pthread_mutex_destroy(&data->mut_eat_t);
-	pthread_mutex_destroy(&data->mut_sleep_t);
 	pthread_mutex_destroy(&data->mut_philos_qty);
-	pthread_mutex_destroy(&data->mut_print);
 	pthread_mutex_destroy(&data->mut_keep_loop);
+	pthread_mutex_destroy(&data->mut_eat_t);
+	pthread_mutex_destroy(&data->mut_die_t);
+	pthread_mutex_destroy(&data->mut_sleep_t);
 	pthread_mutex_destroy(&data->mut_start_time);
+	pthread_mutex_destroy(&data->mut_print);
 }
 
 void	free_data(t_data *data)
