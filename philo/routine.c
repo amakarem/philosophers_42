@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:05:20 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:53:06 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:16:57 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ static void	*routine(void *philo_p)
 	{
 		if (eat(philo) != 0)
 			break ;
-		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
+		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD
+			|| to_sleep(philo) != 0)
 			break ;
-		if (to_sleep(philo) != 0)
-			break ;
-		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD)
-			break ;
-		if (think(philo) != 0)
+		if (mutex_get_int(&philo->mut_state, &philo->state) == DEAD
+			|| think(philo) != 0)
 			break ;
 	}
 	return (NULL);
@@ -70,8 +68,8 @@ static void	*all_full_routine(void *data_p)
 	}
 	if (mutex_get_int(&data->mut_keep_loop, &data->keep_loop) == true)
 	{
-		mutex_update_int(&data->mut_keep_loop, &data->keep_loop, 0);
 		kill_all_philos(data);
+		mutex_update_int(&data->mut_keep_loop, &data->keep_loop, 0);
 	}
 	return (NULL);
 }
@@ -93,9 +91,9 @@ static void	*all_alive_routine(void *data_p)
 		if (is_died(&philos[i])
 			&& mutex_get_int(&data->mut_keep_loop, &data->keep_loop))
 		{
+			kill_all_philos(data);
 			mutex_print(data, philos[i].id, MSG_DIED);
 			mutex_update_int(&data->mut_keep_loop, &data->keep_loop, 0);
-			kill_all_philos(data);
 			break ;
 		}
 		if (i == philos_qty - 1)
