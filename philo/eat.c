@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:50:22 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:55:12 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 20:57:42 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static int	take_fork(t_philo *philo, t_fork_side side)
 static int	handle_1_philo(t_philo *philo)
 {
 	take_fork(philo, LEFT);
-	ft_usleep(mutex_get_u64(&philo->data->mut_die_t, &philo->data->die_time));
+	ft_usleep(mutex_get_u64(&philo->data->mut_die_t, &philo->data->die_time),
+		philo->data);
 	set_philo_state(philo, DEAD);
 	pthread_mutex_unlock(philo->left_f);
 	return (1);
@@ -80,7 +81,8 @@ int	eat(t_philo *philo)
 	mutex_print(philo->data, philo->id, MSG_EAT);
 	mutex_update_u64(&philo->mut_last_eat_time,
 		&philo->last_eat_time, get_time());
-	ft_usleep(mutex_get_u64(&philo->data->mut_eat_t, &philo->data->eat_time));
+	ft_usleep(mutex_get_u64(&philo->data->mut_eat_t, &philo->data->eat_time),
+		philo->data);
 	mutex_increment(&philo->mut_nb_meals_had, &philo->nb_meals_had);
 	pthread_mutex_unlock(philo->left_f);
 	pthread_mutex_unlock(philo->right_f);

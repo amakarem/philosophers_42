@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:08:14 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/15 15:45:33 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 20:59:46 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ uint64_t	get_time(void)
 	return (milliseconds);
 }
 
-void	ft_usleep(uint64_t sleep_time)
+void	ft_usleep(uint64_t sleep_time, t_data *data)
 {
 	uint64_t	start;
 
 	start = get_time();
 	while ((get_time() - start) < sleep_time)
+	{
+		if (!mutex_get_int(&data->mut_keep_loop, &data->keep_loop))
+			break ;
 		usleep(500);
+	}
 }

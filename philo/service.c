@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:09:13 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 19:59:36 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 20:56:20 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int	to_sleep(t_philo *philo)
 		return (1);
 	mutex_print(philo->data, philo->id, MSG_SLEEP);
 	ft_usleep(mutex_get_u64(&philo->data->mut_sleep_t,
-			&philo->data->sleep_time));
+			&philo->data->sleep_time), philo->data);
 	return (0);
 }
