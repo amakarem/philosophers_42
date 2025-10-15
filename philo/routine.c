@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:05:20 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/15 20:56:37 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 21:00:47 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	*routine(void *philo_p)
 	mutex_update_u64(&philo->mut_last_eat_time,
 		&philo->last_eat_time, get_time());
 	if (philo->id % 2 == 0)
+	{
+		to_sleep(philo);
 		ft_usleep(philo->data->eat_time - 10, philo->data);
+	}
 	while (mutex_get_int(&philo->mut_state, &philo->state) != DEAD)
 	{
 		if (eat(philo) != 0)
