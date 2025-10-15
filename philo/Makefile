@@ -1,20 +1,20 @@
 # **************************************************************************** #
-#        #
-#       :::      ::::::::    #
-#    Makefile             :+:      :+:    :+:    #
-#             +:+ +:+         +:+      #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
 #    By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+         #
-#         +#+#+#+#+#+   +#+  #
-#    Created: 2025/10/14 13:49:00 by aelaaser          #+#    #+#    #
-#    Updated: 2025/10/14 18:21:29 by aelaaser         ###   ########.fr        #
-#        #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/15 20:54:50 by aelaaser          #+#    #+#              #
+#    Updated: 2025/10/15 20:54:56 by aelaaser         ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
 
 # Library name
 NAME = philo
 
 # Compiler and flags
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 # Source files
