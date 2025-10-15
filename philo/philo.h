@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:35:03 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/10/14 20:27:25 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/10/15 14:39:48 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
 # define FULL 4
 # define IDLE 5
 # define MSG_TAKE_FORKS "has taken a fork"
+# define MSG_EAT "is eating"
 # define MSG_THINK "is thinking"
 # define MSG_SLEEP "is sleeping"
-# define MSG_EAT "is eating"
 # define MSG_DIED "died"
 
 typedef enum e_fork_side
@@ -61,7 +61,6 @@ typedef struct s_data
 {
 	int				philos_qty;
 	int				nb_meals;
-	int				nb_full_p;
 	int				keep_loop;
 	uint64_t		eat_time;
 	uint64_t		die_time;
